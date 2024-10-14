@@ -1,15 +1,9 @@
 import os
-import inspect
-import markdown
-from fasthtml.components import html2ft
 from fasthtml.common import (
     FastHTML,
     serve,
     H1,
     H2,
-    H3,
-    Code,
-    Pre,
     A,
     Ul,
     Li,
@@ -18,9 +12,6 @@ from fasthtml.common import (
     Style,
     P,
     FileResponse,
-    KatexMarkdownJS,
-    HighlightJS,
-    Hr,
 )
 
 
@@ -71,6 +62,10 @@ hr {
 
 app = FastHTML(hdrs=(custom_css))
 
+postpath_to_title = {
+    "xor.html": "The simplest neural net: XOR.",
+}
+
 
 @app.get("/")
 def home():
@@ -106,7 +101,10 @@ def home():
     posts = (
         H2("posts"),
         Ul(
-            *[Li(A(post, href=f"/posts/{post}")) for post in os.listdir("public/posts")]
+            *[
+                Li(A(postpath_to_title[post], href=f"/posts/{post}"))
+                for post in os.listdir("public/posts")
+            ]
         ),
     )
     projects = (H2("projects"), P("Nothing here yet... coming soon!"))
@@ -117,7 +115,7 @@ def home():
 
 @app.get("/resume")
 def resume():
-    return FileResponse(f"public/resume.pdf")
+    return FileResponse("public/resume.pdf")
 
 
 @app.get("/{fname:path}.{ext:static}")

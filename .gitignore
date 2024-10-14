@@ -2,8 +2,5 @@
 *.pyc
 __pycache__/
 
-# ignore jupyter notebook checkpoints
-notebooks/
-
 # session key
 .sesskey
