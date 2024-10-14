@@ -69,9 +69,7 @@ hr {
 """)
 
 
-app = FastHTML(hdrs=(custom_css, HighlightJS()))
-
-post_titles = {"quick_sort.md": "How to quick-sort"}
+app = FastHTML(hdrs=(custom_css))
 
 
 @app.get("/")
@@ -82,10 +80,11 @@ def home():
             """I'm posting mostly deep-learning-related stuff here.
             I've recently decided to adopt Jupyter Notebooks as my primary medium for writing code, blog posts, and notes,
             so all the posts are simply Notebooks exported to HTML.
-            Projects, on the other hand, are specific to this website and are written in Python using the fasthtml library
-            (which also powers the rest of the non-post parts of the site).
-        """
+            """
         ),
+        P("""Projects, on the other hand, are specific to this website and are written in Python using the fasthtml library
+        (which also powers the rest of the non-post parts of the site).
+        """),
     )
     info = (
         Div(
@@ -111,7 +110,6 @@ def home():
         ),
     )
     projects = (H2("projects"), P("Nothing here yet... coming soon!"))
-
     return Main(
         Div(intro, info, posts, projects),
     )
@@ -124,7 +122,6 @@ def resume():
 
 @app.get("/{fname:path}.{ext:static}")
 async def get(fname: str, ext: str):
-    print(fname)
     return FileResponse(f"public/{fname}.{ext}")
 
 
