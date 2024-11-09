@@ -147,5 +147,3 @@ print(cache)
 Capacity: 3 
 Cache: {'two': 2, 'three': 3, 'four': 4}
 ```
-
-testing railway
