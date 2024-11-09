@@ -62,8 +62,8 @@ def get():
         )
     
     return Title('Nicholas Hoffs Blog'), Div(
-        H1("Hey, I'm Nic!", cls="text-4xl font-bold font-heading tracking-tight "),
-        P("I love developing software, training and researching deep models (sometimes shallow too), architecting autonomous race cars, practicing Brazilian-Jiu-Jitsu, competing in water polo, exploring philosophy, politics, and civics — and most of all, doing this stuff with friends!",
+        H1("my (nic hoffs') blog", cls="text-4xl font-bold font-heading tracking-tight "),
+        P("I love training and researching deep models, architecting autonomous race cars, developing web applications, practicing Brazilian-Jiu-Jitsu, playing water polo, and lots of other sh*t.",
         cls="text-lg uk-text-muted uk-margin-small-top"),
         P("Shoutout to", A(Strong(" Marius"), href="https://blog.mariusvach.com", style="color: dimgray;"), " for this fantastic blog template.", cls="text-lg uk-text-muted uk-margin-small-top"),
         Div(
@@ -78,7 +78,7 @@ def get():
         ),
         cls="uk-container uk-container-xl py-16",
     )
-    
+ 
 @rt('/posts/{slug}')
 def get(slug: str):
     with open(f'posts/{slug}.md', 'r') as file:
