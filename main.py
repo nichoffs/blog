@@ -10,8 +10,9 @@ import os
 
 frankenui = Link(rel='stylesheet', href='https://unpkg.com/franken-wc@0.1.0/dist/css/zinc.min.css'), Script(src='https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit.min.js'),Script(src='https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit-icons.min.js')
 tailwind = Link(rel="stylesheet", href="/public/app.css", type="text/css")
+favicon = Link(rel="icon", href="/public/favicon.png", type="image/png")
 
-app, rt = fast_app(pico=False, hdrs=(frankenui, tailwind, KatexMarkdownJS(), HighlightJS(langs=['python', 'bash', 'yaml', 'json'], light="atom-one-dark")), static_dir='public')
+app, rt = fast_app(pico=False, hdrs=(frankenui, tailwind, KatexMarkdownJS(), HighlightJS(langs=['python', 'bash', 'yaml', 'json'], light="atom-one-dark"), favicon), static_dir='public')
 
 @rt('/')
 def get():
