@@ -61,7 +61,7 @@ def get():
             **kwargs
         )
     
-    return Title('Nicholas Hoffs Blog'), Div(
+    return Title("Nic Hoffs' Blog"), Div(
         H1("my (nic hoffs') blog", cls="text-4xl font-bold font-heading tracking-tight "),
         P("I love training and researching deep models, architecting autonomous race cars, developing web applications, practicing Brazilian-Jiu-Jitsu, playing water polo, and lots of other sh*t.",
         cls="text-lg uk-text-muted uk-margin-small-top"),
@@ -88,7 +88,7 @@ def get(slug: str):
     
     frontmatter = yaml.safe_load(content.split('---')[1])
     
-    return Title(f"{frontmatter['title']} - Nic Hoffs Blog"), Div(
+    return Title(f"{frontmatter['title']} - Nic Hoffs' Blog"), Div(
         A(Lucide('arrow-left', cls="w-4 h-4 text-black mr-2"), 'Go Back', href='/', cls="absolute md:top-0 left-0 top-2 md:-ml-48 md:mt-16 uk-button uk-button-ghost"),
         H1(frontmatter["title"], cls="text-4xl font-bold font-heading tracking-tight uk-margin-small-bottom"),
         P(frontmatter['date'].strftime("%B %d, %Y"), " by Nicholas Hoffs", cls="uk-text-muted uk-text-small uk-text-italic"),
