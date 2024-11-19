@@ -28,11 +28,12 @@ Constraints:
 
 ## Solution
 
+Input:
 ```python
 prices = [1,5,8,9,10,17,17,20,24,30]
 ```
 
-# Recursive
+### Recursive
 
 ```python
 def cut_rod(prices, n):
@@ -49,7 +50,7 @@ cut_rod(prices, len(prices))
 30
 ```
 
-# Recursive memoized with list
+### Recursive memoized with list
 
 ```python
 def cut_rod(prices, n, memo=None):
@@ -70,7 +71,7 @@ cut_rod(prices, len(prices))
 30
 ```
 
-# Recursive memoized with dictionary
+### Recursive memoized with dictionary
 
 ```python
 def cut_rod(prices, n, memo=None):
@@ -91,7 +92,7 @@ cut_rod(prices, len(prices))
 30
 ```
 
-# Bottom-Up
+### Bottom-Up
 
 ```python
 def cut_rod(prices, n):
