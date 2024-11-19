@@ -1,7 +1,7 @@
 ---
 title: "What I Worked On This Summer"
 date: 2024-11-10T15:35:25-05:00
-draft: false
+draft: true
 excerpt: GPTs, MNISTs, and C hell.
 ---
 
