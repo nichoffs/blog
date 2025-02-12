@@ -13,6 +13,7 @@ frankenui = (
 )
 tailwind = Link(rel="stylesheet", href="/public/app.css", type="text/css")
 favicon = Link(rel="icon", href="/public/favicon.png", type="image/png")
+custom_styles = Link(rel="stylesheet", href="/public/custom.css", type="text/css")
 
 app, rt = fast_app(
     pico=False,
@@ -20,6 +21,7 @@ app, rt = fast_app(
         frankenui,
         tailwind,
         KatexMarkdownJS(),
+        custom_styles,
         HighlightJS(langs=['python', 'bash', 'yaml', 'json'], light="atom-one-dark"),
         favicon
     ),
