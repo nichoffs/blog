@@ -2,6 +2,7 @@
 title: "Markov Chains and Hidden Markov Models"
 date: 2025-02-06T20:07:56-05:00
 draft: false
+excerpt: "Propagating state and how to handle hidden states with relevant observations!"
 ---
 
 Important citations: This post began with me taking notes on a series of videos by "Normalized Nerd" on Markov Chains in an effort to better understand the content from my robotics class. I infused some of my own intuition and notation, but a lot of the content comes directly from these two sources. All credit to them.
