@@ -176,11 +176,6 @@ $$
 \text{bel}_t(x)=\eta M_{xY_t}\sum_{x'}T_{x'x}\text{bel}_{t-1}(x')
 $$
 
-
-```python
-
-```
-
 ## Including observations in the action model estimate
 
 Now let's say we have a set of observations which provide us some information about the state. Maybe the points on the grid are painted either black or white and these values are known ahead of time. The sensor is noisy, correctly predicting the color with an accuracy of .9.
