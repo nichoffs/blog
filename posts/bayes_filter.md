@@ -7,7 +7,7 @@ excerpt: "Bayes Filters using HMMs and a more general motion model"
 
 # Bayes Filter
 
-The Bayes Filter is a general algorithm for state estimation. A Kalman Filter, for example, is a specific implementation of the Bayes Filter and may be the most important algorithm in robotics. Due to the generality of the Bayes Filter, it was difficult for me to grasp the different applications. I've found that studying the implementation in different contexts helped me quite a bit. In this post, I'll cover two different scenarios where a Bayes Filter is useful: state estimation with a Hidden Markov Model (beginning with a regular Markov Model) and with an "Motion Model".
+The Bayes Filter is a general algorithm for state estimation. A Kalman Filter, for example, is a specific implementation of the Bayes Filter and may be the most important algorithm in robotics. Due to the generality of the Bayes Filter, it was difficult for me to grasp the different applications. I've found that studying the implementation in different contexts helped me quite a bit. In this post, I'll cover two different scenarios where a Bayes Filter is useful: state estimation with a Hidden Markov Model (beginning with a regular Markov Model) and with an "Action Model".
 
 ## Markov Model - Transitioning between states without observation
 
@@ -58,7 +58,7 @@ $$P(X_t=x|X_0,T)$$
 
 By computing this value for every state $x$, we get the probability distribution of the state at time $t$. This is what we want.
 
-The markov model provides us a very clean method of representing the state of the system and how it evolves. It's all packaged up nicely. The Motion Model is a bit less elegant, although it is more generally applicable.
+The markov model provides us a very clean method of representing the state of the system and how it evolves. It's all packaged up nicely. The action model is a bit less elegant, although it is more generally applicable.
 
 We could equivalently define $X_t$ in terms of $X_{t-1}$ and our transition model, which makes the relevance of recursion a bit clearer.
 
@@ -66,32 +66,7 @@ $$P(X_t=x|X_0,T)=P(X_t=x|X_{t-1}, T)=P(X_t=x|X_{t-1})$$
 
 The final equivalency is just to show that $T$ is usually not explicitly included in the probability.
 
-I want to clarify notation a bit. To calculate $P(X_t=x|X_{t-1})$ we have to use the law of total probability. However, the law of total probability usually appears in the following form:
-
-$$
-P(A)=\sum_{i=1}^n P(A|H_i)P(H_i)
-$$
-
-Notice that the dependence of $A$ on $H$ is not explicitly shown. Using this notation, we would expect $P(X_t=x)$, not $P(X_t=x|X_{t-1})$:
-
-$$
-P(X_t=x)=\sum_{x'} P(X_t=x|X_{t-1}=x')P(X_{t-1}=x')
-$$
-
-However, I will use $P(X_t=x|X_{t-1})$ to refer to this probability as it more clearly shows that $X_t=x$ depends on $X_{t-1}$. Therefore:
-
-$$
-P(X_t=x|X_{t-1})=\sum_{x'} P(X_t=x|X_{t-1}=x')P(X_{t-1}=x')
-$$
-
-And to use the same notation for $P(X_{t-1}=x')$:
-
-$$
-P(X_t=x|X_{t-1})=\sum_{x'} P(X_t=x|X_{t-1}=x')P(X_{t-1}=x'|X_{t-2})
-$$
-
 At this point, a recursive definition that allows for massive reduction in computational complexity comes very naturally. Let's define a quantity $\alpha(X_t=x)=P(X_t=x|X_{t-1})$, or alternatively $\alpha_t(x)$ (I'll use the latter notation). Now, we can write the above equation as follows:
-
 
 $$
 \alpha_t(x)=P(X_t=x|X_{t-1})=\sum_{x'} P(X_t=x|X_{t-1}=x')P(X_{t-1}=x'|X_{t-2})=\sum_{x'} P(X_t=x|X_{t-1}=x')\alpha_{t-1}(x')
@@ -106,9 +81,9 @@ $$
 To get $P(X_t|X_{t-1})$, we must calculate $\alpha_t(x)$ for all possible state values $x$.
 
 
-## Motion Model -- Transitioning between states without observation
+## Action Model -- Transitioning between states without observation
 
-In the Motion Model, our state is the position of a robot in a $2 \times 2$ grid. We are given a list of actions $u_{1:t}$ over the timesteps along with probabilities related to how an action affects the state. This is known as the **motion model**, similar to $T$ in the hidden markov model. A robot can either move up, down, left, or right. It succeeds with probability $.9$ and fails with probability $.1$. If the action would move the robot off the grid, it stays in place with absolute certainty ($1$).
+In the action model, our state is the position of a robot in a $2 \times 2$ grid. We are given a list of actions $u_{1:t}$ over the timesteps along with probabilities related to how an action affects the state. This is known as the **motion model**, similar to $T$ in the hidden markov model. A robot can either move up, down, left, or right. It succeeds with probability $.9$ and fails with probability $.1$. If the action would move the robot off the grid, it stays in place with absolute certainty ($1$).
 
 I think this approach lends itself more to a code implementation, although I won't get into details in this post.
 
