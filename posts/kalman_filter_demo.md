@@ -16,7 +16,7 @@ $$
 x_{t+1}=Ax_t+\epsilon=\begin{bmatrix} 1 & 0 & \Delta t & 0 \\ 0 & 1 & 0 & \Delta t \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}x_t+\epsilon
 $$
 
-where $\epsilon \sim \mathcal{N}(1,0)$
+where $\epsilon \sim \mathcal{N}(1,\text{process covariance})$
 
 # Observation Model
 
@@ -24,6 +24,7 @@ $$
 y_t = Cx_t + \mathit{v} = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{bmatrix}x_t + \mathit{v}
 $$
 
+where $\mathit{v} \sim \mathcal{N}(1,\text{observation covariance})$
 
 ```python
 import numpy as np
@@ -175,13 +176,4 @@ plt.subplots_adjust(top=0.92)
 plt.show()
 ```
 
-
-    
 ![png](kalman_filter_demo_files/kalman_filter_demo_1_0.png)
-    
-
-
-
-```python
-
-```
